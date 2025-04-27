@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		F102A0672DBD53AC0005D84B /* ObraDeArte.swift in Sources */ = {isa = PBXBuildFile; fileRef = F102A0662DBD53AC0005D84B /* ObraDeArte.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		F102A0482DBD504D0005D84B /* ObrasCuritibanas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObrasCuritibanas.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F102A0662DBD53AC0005D84B /* ObraDeArte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObraDeArte.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -50,7 +45,6 @@
 		F102A03F2DBD504D0005D84B = {
 			isa = PBXGroup;
 			children = (
-				F102A0662DBD53AC0005D84B /* ObraDeArte.swift */,
 				F102A04A2DBD504D0005D84B /* ObrasCuritibanas */,
 				F102A0492DBD504D0005D84B /* Products */,
 			);
@@ -138,7 +132,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F102A0672DBD53AC0005D84B /* ObraDeArte.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +145,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7DF6V9NC6T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ObrasCuritibanas/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -179,6 +173,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7DF6V9NC6T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ObrasCuritibanas/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

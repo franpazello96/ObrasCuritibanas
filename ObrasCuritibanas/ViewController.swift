@@ -7,34 +7,52 @@
 
 import UIKit
 
-// Classe responsável por exibir a lista de obras
+// exibir a lista de obras
 class ViewController: UIViewController {
     
     private var obras: [ObraDeArte] = obrasMockadas
     
-    // Conexão com a Collection View do Storyboard
+    // conexão com a Collection View do Storyboard
     @IBOutlet var collectionView: UICollectionView!
     
-    // Método chamado ao carregar a tela
+    // carregar a tela
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 400, height: 220) // Definindo o tamanho da célula
-        layout.minimumLineSpacing = 4 // Espaçamento vertical entre as linhas
-        layout.minimumInteritemSpacing = 4 // Espaçamento horizontal entre itens
-        layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4) // Margem nas bordas
-               
-               collectionView.collectionViewLayout = layout
+        configurarCollectionView()
+    }
+    
+    //recalcule o layout toda vez que girar a tela
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         
-        
-       // collectionView.register(UINib(nibName: "MyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
+        coordinator.animate(alongsideTransition: { _ in
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }, completion: nil)
+    }
 
-        collectionView.collectionViewLayout = UICollectionViewFlowLayout()
+    //  configurar a Collection View
+    private func configurarCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+       //layout.itemSize = CGSize(width: 400, height: 220) // tamanho da célula
+        layout.minimumLineSpacing = 4 // entre linhas
+        layout.minimumInteritemSpacing = 4 // entre itens
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4) // margens
+        
+        collectionView.collectionViewLayout = layout
         collectionView.register(MyCollectionViewCell.nib(), forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
         
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    // navegação para a tela de detalhes
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mostrarDetalhesObra",
+           let detalhesVC = segue.destination as? DetalhesObraViewController,
+           let obra = sender as? ObraDeArte {
+            detalhesVC.obra = obra
+        }
     }
 }
 
@@ -42,14 +60,16 @@ extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        print("Item selecionado")
+        let obraSelecionada = obras[indexPath.item]
+        performSegue(withIdentifier: "mostrarDetalhesObra", sender: obraSelecionada)
     }
 }
+
 
 extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return obras.count
     }
   
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -57,22 +77,29 @@ extension ViewController: UICollectionViewDataSource {
             fatalError("Erro ao criar célula")
         }
         
-        let obra = obras[indexPath.row]
+        let obra = obras[indexPath.item]
         cell.configure(with: obra)
-
+        
         return cell
     }
-
 }
 
-
-// Caso deseje configurar o tamanho das células:
 extension ViewController: UICollectionViewDelegateFlowLayout {
     
-    // Definindo o tamanho de cada célula
+    // tamanho da célula
+   // func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+     //   return CGSize(width: 400, height: 220)
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 400, height: 220)
+        let spacing: CGFloat = 12 // espaço entre as células
+        let itemsPerRow: CGFloat = UIDevice.current.orientation.isLandscape ? 2 : 1
+
+        let totalSpacing = spacing * (itemsPerRow + 1) // espaçamento entre itens + laterais
+        let availableWidth = collectionView.bounds.width - totalSpacing
+        let itemWidth = availableWidth / itemsPerRow
+        let itemHeight = itemWidth * 0.6 // proporção altura/largura
+
+        return CGSize(width: itemWidth, height: itemHeight)
     }
 }
-
 

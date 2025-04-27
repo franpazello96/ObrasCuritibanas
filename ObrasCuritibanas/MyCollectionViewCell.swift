@@ -26,7 +26,7 @@ class MyCollectionViewCell: UICollectionViewCell {
             imageView.clipsToBounds = true
         } else {
             print("Erro: Imagem '\(obra.imagemNome)' não encontrada.")
-            imageView.image = nil // ou uma imagem padrão de erro, se desejar
+            imageView.image = nil
         }
         
         tituloLabel.text = obra.titulo
