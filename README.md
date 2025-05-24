@@ -1,11 +1,6 @@
 # Obras Curitibanas
 - https://youtu.be/oydbbJ5cDiU 
 
-## Autores
-- Eduardo Nicolosi de Oliveira
-- Francielly Pazello
-- Joao Pedro Brum Lisboa
-
 ## Descrição
 O aplicativo **Obras Curitibanas** é uma galeria interativa que exibe obras de arte de artistas curitibanos. Ele permite que os usuários explorem as obras, visualizem detalhes como título, artista, ano, estilo e descrição, e compartilhem informações sobre as obras com outras pessoas. O objetivo é promover a arte local e incentivar o conhecimento sobre artistas da região.
 
@@ -25,3 +20,5 @@ O aplicativo **Obras Curitibanas** é uma galeria interativa que exibe obras de 
 - **Xcode**: Certifique-se de que o Xcode está instalado em sua máquina (versão mínima recomendada: 13.0).
 - **macOS**: O projeto foi desenvolvido e testado no macOS.
 
+## Desenvolvido por
+Francielly Pazello 
